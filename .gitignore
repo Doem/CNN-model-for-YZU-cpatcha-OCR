@@ -1,0 +1,9 @@
+*.png
+*.jpg
+
+.vscode
+accounts.ini
+captcha_imgs/
+fail_imgs/
+chromedriver.exe
+__pycache__

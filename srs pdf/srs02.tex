@@ -1,0 +1,188 @@
+%Copyright 2014 Jean-Philippe Eisenbarth
+%This program is free software: you can 
+%redistribute it and/or modify it under the terms of the GNU General Public 
+%License as published by the Free Software Foundation, either version 3 of the 
+%License, or (at your option) any later version.
+%This program is distributed in the hope that it will be useful,but WITHOUT ANY 
+%WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A 
+%PARTICULAR PURPOSE. See the GNU General Public License for more details.
+%You should have received a copy of the GNU General Public License along with 
+%this program.  If not, see <http://www.gnu.org/licenses/>.
+
+%Based on the code of Yiannis Lazarides
+%http://tex.stackexchange.com/questions/42602/software-requirements-specification-with-latex
+%http://tex.stackexchange.com/users/963/yiannis-lazarides
+%Also based on the template of Karl E. Wiegers
+%http://www.se.rit.edu/~emad/teaching/slides/srs_template_sep14.pdf
+%http://karlwiegers.com
+\documentclass{scrreprt}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{listings}
+\usepackage{underscore}
+\usepackage[bookmarks=true]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{CJKutf8}
+\usepackage{indentfirst}
+\hypersetup{
+    bookmarks=false,    % show bookmarks bar?
+    pdftitle={Software Requirement Specification},    % title
+    pdfauthor={Jean-Philippe Eisenbarth},                     % author
+    pdfsubject={TeX and LaTeX},                        % subject of the document
+    pdfkeywords={TeX, LaTeX, graphics, images}, % list of keywords
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=blue,       % color of internal links
+    citecolor=black,       % color of links to bibliography
+    filecolor=black,        % color of file links
+    urlcolor=purple,        % color of external links
+    linktoc=page            % only page is linked
+}%
+\def\myversion{1.0 }
+\date{}
+%\title{%
+
+%}
+\usepackage{hyperref}
+\begin{document}
+\begin{CJK}{UTF8}{nkai}
+
+\begin{flushright}
+    \begin{bfseries}
+        \Huge{基於CNN之元智選課系統驗證碼辨識}\\
+
+        \vspace{8cm}
+       \vspace{0.2cm}
+       Teammate : 1051522 許致瑋\\
+       \vspace{0.2cm}
+       1051523 石曜愷\\
+\vspace{0.2cm}
+       1051528 官政凱\\
+\vspace{0.2cm}
+       1053327 陳遠安\\
+\vspace{0.2cm}
+       1053329 陳明彥\\
+
+        \vspace{1cm}
+        \today\\
+    \end{bfseries}
+\end{flushright}
+
+\tableofcontents
+
+
+\chapter{Introduction}
+
+\section{Purpose}
+
+\setlength{\parindent}{1.5em}此規格書目的在於概述本專案之軟體需求，其中包含專案目的、實作、目標用戶與操作資訊。\\
+\setlength{\parindent}{1.5em}本專案利用CNN方式訓練神經網路模型來辨識元智選課系統的驗證碼，以此可供其他開發人員開發對於選課系統之自動化相關專案。
+\section{Intended Audience and Reading Suggestions}
+
+此規格書之閱讀對象:
+\begin{itemize}
+  \item  專案經理: 了解專案預期之功能，分析並檢視是否符合需求
+  \item 開發者: 了解專案架構與功能需求，加以分析並開發出符合的規格的專案
+  \item 使用者: 了解專案的架構與使用方式，運用在其他相關專案中。
+\end{itemize}
+          
+\section{Project Scope}
+\setlength{\parindent}{1.5em}本專案除了CNN模型之外，還包含了訓練時所用的訓練集、收集訓練集所用的爬蟲程式以及運用CNN模型來自動登入選課系統之範例程式。
+
+\chapter{Overall Description}
+
+\section{Product Perspective}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=8.5cm]{456.png}
+\end{center}
+\caption{架構圖}
+\label{fig:1}
+\end{figure}
+
+\section{Product Functions}
+
+\begin{itemize}
+  \item  登入選課系統
+  \item 抓網頁的驗證碼圖片
+  \item .辨識驗證碼
+\end{itemize}
+
+\section{User Classes and Characteristics}
+我們產品的主要客戶群就是?
+
+\section{Operating Environment}
+browser必須是chrome。
+\section{Design and Implementation Constraints}
+\setlength{\parindent}{1.5em}資料蒐集: ?
+\section{Assumptions and Dependencies}
+\setlength{\parindent}{1.5em}驗證碼格式要類似。
+
+\chapter{External Interface Requirements}
+
+\section{User Interfaces}
+\setlength{\parindent}{1.5em}打開terminal,打python xxx.py
+Test.
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=8.5cm]{123.png}
+\end{center}
+\caption{編譯畫面}
+\label{fig:1}
+\end{figure}
+\section{Hardware Interfaces}
+沒
+\section{Software Interfaces}
+\begin{enumerate}
+  \item  安裝軟體:\\
+         keras、tensorflow、python、opencv、selenium-wire、bs4、pytesseract、requests、configparser
+  \item  使用的參數:\\
+loss function: categorical crossentropy\\
+       optimizer: Adam(預設參數)\\
+       metrics: accuracy\\
+  \item  輸入與輸出:\\
+ 輸入 :驗證碼圖片\\
+       輸出 :驗證碼的答案\\
+  \item  輸入與輸出大小:\\
+ 輸入大小 :20*60\\
+       輸出大小 :四個字\\
+\end{enumerate}
+
+
+\chapter{System Features}
+
+\section{Description and Priority}
+\setlength{\parindent}{1.5em}系統會自己打開chrome，自動登入選課系統。
+\section{Stimulus/Response Sequences}
+\begin{tabular}{ | l | l | p{5cm} |}
+\hline
+case1 & 登入成功:停在登入以後的畫面。\\ \hline
+ case2 & 驗證碼辦認錯誤:跳出警告，然後重新整理再試一次。\\ \hline
+ case3 & 帳密打錯:跳出打錯帳號密碼訊息，並且直接結束程式。\\ \hline
+ case4 & 被學校擋:跳出錯誤訊息，並且直接結束程式。\\
+\hline
+\end{tabular}
+
+\section{Functional Requirements}
+\begin{itemize}
+  \item  辨識驗證碼
+  \item 自動登入
+\end{itemize}
+
+\chapter{Other Nonfunctional Requirements}
+
+\section{Performance Requirements}
+\setlength{\parindent}{1.5em}準確率:驗證碼辨識率至少高於90\%。
+\section{Safety Requirements (optional)}
+無
+
+\section{Security Requirements (optional)}
+無
+
+
+
+\end{CJK}
+
+\end{document}

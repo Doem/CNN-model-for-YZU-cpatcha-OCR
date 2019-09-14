@@ -1,0 +1,72 @@
+基於CNN之元智選課系統驗證碼辨識
+
+2.1 Introduction
+    2.1.1 Purpose (2%)
+        此規格書目的在於概述本專案之軟體需求，其中包含專案目的、實作、目標用戶與操作資訊。
+        本專案利用CNN方式訓練神經網路模型來辨識元智選課系統的驗證碼，以此可供其他開發人員
+        開發對於選課系統之自動化相關專案。
+    2.1.2 Intended Audience and Reading Suggestions (1%)
+        此規格書之閱讀對象:
+            專案經理: 了解專案預期之功能，分析並檢視是否符合需求
+            開發者: 了解專案架構與功能需求，加以分析並開發出符合的規格的專案
+            使用者: 了解專案的架構與使用方式，運用在其他相關專案中
+    2.1.3 Project Scope (1%)
+        本專案除了CNN模型之外，還包含了訓練時所用的訓練集、收集訓練集所用的爬蟲程式以及
+        運用CNN模型來自動登入選課系統之範例程式。
+2.2 Overall Description
+    2.2.1 Product Perspective (1%)
+        (架構圖)
+    2.2.2 Product Functions (1%)
+        抓網頁的驗證碼圖片
+        辨識驗證碼
+        登入選課系統
+        (流程圖)
+    2.2.3 User Classes and Characteristics (0.5%)
+        我們產品的主要客戶群就是開發者，那些需要開發元智選課系統自動化相關專案的開發者們，
+        我們提供高準確率的驗證碼辨識產品，供應給其他開發者開發完善的自動化專案。
+        (圖)
+    2.2.4 Operating Environment (0.5%)
+        能使用Keras框架的作業系統與開發環境即可。
+    2.2.5 Design and Implementation Constraints (0.5%) 
+        選課系統必須開啟: 為了避免驗證碼人工Label的過程中有誤造成Model準確率下降，
+        我們透過選課系統與pytesseract來幫助我們Label驗證碼的答案，確保答案正確。
+    2.2.6 Assumptions and Dependencies (0.5%)
+        驗證碼樣式要類似: 由於我們只針對選課系統的驗證碼去做訓練，所以用於其他的驗證碼圖片(如經過變化、驗證碼位數非4位數等)
+        會造成準確率下降，從而喪失原本的功能性。
+        
+2.3 External Interface Requirements
+    2.3.1 User Interfaces (2%)
+        主要介面主要在Terminal上完成，讀入要辨識的驗證碼，並執行對應的py檔案即可。
+        $python xxxxx.py
+        (照片)
+    2.3.2 Hardware Interfaces (1%)
+    筆記型電腦或一般的桌上型電腦即可。
+\end{itemize}
+    2.3.3 Software Interfaces (1%)
+        1. 安裝軟體:
+        keras、tensorﬂow、python、opencv、numpy、selenium-wire、bs4、pytesseract、requests、configparser
+        2. 使用的參數:
+        loss function: categorical crossentropy、accuracy
+        Adam(lr=0.001, beta\_1=0.9, beta\_2=0.999)
+        3. 輸入圖片與輸出:
+        輸入圖片:shape(20,60,3)
+        輸出:驗證碼答案(4 cahr)
+
+
+2.4 System Features
+    2.4.1 Description and Priority (1%)
+        此專案主要是辨識選課系統之驗證碼，對於選課系統的驗證碼辨識準確率將會是最高優先級，
+        對於其他系統或風格的驗證碼的辨識能力暫不考慮。
+    2.4.2 Stimulus/Response Sequences (1%)
+        case1:登入成功:回到登入畫面重複登入。
+        case2:驗證碼辨識錯誤:跳出警告，然後重新整理再試一次。
+        case3:帳密打錯:跳出打錯帳號密碼訊息，並且直接結束程式。
+    2.4.3 Functional Requirements (2%)
+        1.驗證碼辨識 - 主要將驗證碼答案轉成文字並輸出
+2.5 Other Nonfunctional Requirements
+    2.5.1 Performance Requirements (4%)。
+        準確率:驗證碼辨識率至少高於90%。
+    2.5.2 Safety Requirements (optional)
+        無
+    2.5.3 Security Requirements (optional) 
+        無

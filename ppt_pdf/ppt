@@ -1,0 +1,487 @@
+% Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
+%
+% In principle, this file can be redistributed and/or modified under
+% the terms of the GNU Public License, version 2.
+%
+% However, this file is supposed to be a template to be modified
+% for your own needs. For this reason, if you use this file as a
+% template and not specifically distribute it as part of a another
+% package/program, I grant the extra permission to freely copy and
+% modify this file as you see fit and even to delete this copyright
+% notice. 
+
+\documentclass{beamer}
+\usepackage{xeCJK}
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+\setCJKmainfont{新細明體}
+
+% There are many different themes available for Beamer. A comprehensive
+% list with examples is given here:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+% You can uncomment the themes below if you would like to use a different
+% one:
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{boxes}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{default}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+\mode<presentation>
+{
+\setbeamertemplate{footline}
+{
+\leavevmode
+  \hbox{
+  \begin{beamercolorbox}
+  [wd=1\paperwidth,ht=2.25ex,
+  dp=1ex,right]{date in head/foot}
+   \insertframenumber{} /
+   \inserttotalframenumber\hspace*{2ex}
+  \end{beamercolorbox} 
+  }\vskip0pt
+}
+}
+\title{開放平台期末專題報告}
+
+% A subtitle is optional and this may be deleted
+\subtitle{系統}
+\author{Team13\\\and1051522 許致瑋\\\and1051523 石曜愷\\\and1051528 官政凱\\\and1053327 陳遠安\\\and1053329 陳明彥}
+% - Give the names in the same order as the appear in the paper.
+% - Use the \inst{?} command only if the authors have different
+%   affiliation.
+
+\date{2019/6/21}
+% - Either use conference name or its abbreviation.
+% - Not really informative to the audience, more for people (including
+%   yourself) who are reading the slides online
+
+% Let's get started
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Outline}
+\vspace{3ex}
+  \tableofcontents
+  % You might wish to add the option [pausesections]
+\end{frame}
+
+
+% Section and subsections will appear in the presentation overview
+% and table of contents.
+\section{Introduction}
+\subsection{Introduction to our team}
+
+
+\begin{frame}{Introduction to our team}
+  \begin{itemize}
+  \item {
+    1051522 許致瑋
+  }
+  \item {
+    1051523 石曜愷
+  }
+  \item {
+    1051528 官政凱
+  }
+  \item {
+    1053327 陳遠安
+  }
+  \item {
+    1053329 陳明彥
+  }
+  \end{itemize}
+\end{frame}
+
+\subsection{Introduction to the problem we are trying to solve}
+
+% You can reveal the parts of a slide one at a time
+% with the \pause command:
+\begin{frame}{Introduction to the problem we are trying to solve}
+  \begin{itemize}
+  \item {
+    辨識元智選課系統的驗證碼
+  }
+  \end{itemize}
+\end{frame}
+
+\section{Methodology}
+
+\subsection{Input of our model }
+
+
+\begin{frame}{Input of our model }
+shape為 (20, 60, 3) \begin{figure} \includegraphics [width=0.5\linewidth]{0010.png} \caption{Input example.} \label{fig:1} \end{figure}
+%\begin{block}{Block Title}
+%You can also highlight sections of your presentation in a block, with it's own title
+%\end{block}
+%\begin{theorem}
+%There are separate environments for theorems, examples, definitions and proofs.
+%\end{theorem}
+%\begin{example}
+%Here is an example of an example block.
+%\end{example}
+\end{frame}
+
+\subsection{Output of our model}
+
+\begin{frame}{Output of our model}
+長度為4的list, 每個元素是numpy array (1,36) 的矩陣\\
+\end{frame}
+
+\subsection{Each layer of our model}
+
+\begin{frame}{Each layer of our model}
+	\begin{table}
+		\scalebox{0.7}{
+			\begin{tabular}{| l | l | l | l |}
+			\toprule
+			\textbf{Layer (type)} & 
+			\textbf{Output Shape} & 
+			\textbf{Param \#}& 
+			\textbf{Connected to}\\ 
+			\midrule 
+			input\_1(InputLayer) & (None, 20, 60, 3)& 0 & \\ \hline
+			conv2d\_1 (Conv2D) & (None, 20, 60, 32)& 896 & input\_1[0][0] \\ \hline
+			conv2d\_2 (Conv2D) & (None, 18, 58, 32)&9248 &conv2d\_1[0][0]  \\ \hline
+			batch\_normalization\_1 (BatchNor &(None, 18, 58, 32)& 128& conv2d\_2[0][0] \\ \hline
+			max\_pooling2d\_1 (MaxPooling2D) &(None, 9, 29, 32)&0&batch\_normalization\_1[0][0]  \\ \hline
+			dropout\_1 (Dropout) &(None, 9, 29, 32)&0&max\_pooling2d\_1[0][0]  \\ \hline
+			conv2d\_3 (Conv2D) &(None, 9, 29, 64)&18496&dropout\_1[0][0]  \\ \hline
+			conv2d\_4 (Conv2D) &(None, 7, 27, 64)&36928&conv2d\_3[0][0]  \\ \hline
+			batch\_normalization\_2 (BatchNor & (None, 7, 27, 64)&256&conv2d\_4[0][0]  \\ \hline
+			max\_pooling2d\_2 (MaxPooling2D) &(None, 3, 13, 64)&0& batch\_normalization\_2[0][0] \\ \hline
+			dropout\_2 (Dropout) &(None, 3, 13, 64)&0&max\_pooling2d\_2[0][0]  \\ \hline
+			conv2d\_5 (Conv2D) &(None, 3, 13, 128)&73856&dropout\_2[0][0]  \\ \hline
+			conv2d\_6 (Conv2D) &(None, 1, 11, 128)&147584&conv2d\_5[0][0]  \\ \hline
+			batch\_normalization\_3 (BatchNor &(None, 1, 11, 128)&512& conv2d\_6[0][0] \\ \hline
+			dropout\_3 (Dropout) &(None, 1, 11, 128)&0&batch\_normalization\_3[0][0]  \\ \hline
+			flatten\_1 (Flatten)&(None, 1408)&0&dropout\_3[0][0]  \\ \hline
+			digit1 (Dense) &(None, 36)&50724&flatten\_1[0][0]  \\ \hline
+			digit2 (Dense) &(None, 36)&50724&flatten\_1[0][0]  \\ \hline
+			digit3 (Dense)& (None, 36)&50724&flatten\_1[0][0]  \\ \hline
+			digit4 (Dense)& (None, 36)&50724&flatten\_1[0][0]\\
+			\bottomrule 
+			\end{tabular} 
+		}
+	\end{table}
+\end{frame}
+
+\subsection{How we save our model}
+
+\begin{frame}{How we save our model}
+  \begin{itemize}
+  \item {
+    keras內建函數 model.save
+  }
+  \end{itemize}
+\end{frame}
+
+\subsection{File size of our model}
+
+\begin{frame}{File size of our model}
+  \begin{itemize}
+  \item {
+    5.7MB
+  }
+  \end{itemize}
+\end{frame}
+
+\subsection{Our loss functions, and why}
+
+\begin{frame}{Our loss functions, and why}
+  \begin{itemize}
+  \item {
+    categorical\_crossentropy
+  }
+  \item {
+     因為我們要解的問題是分類問題
+  }
+  \end{itemize}
+\end{frame}
+
+\subsection{Our optimizer and the setting of hyperparameter}
+
+\begin{frame}{Our optimizer and the setting of hyperparameter}
+  \begin{itemize}
+  \item {
+    Adam(lr=0.001, beta\_1=0.9, beta\_2=0.999)
+  }
+  \end{itemize}
+\end{frame}
+
+
+\section{Dataset }
+
+\subsection{The size of our dataset}
+
+\begin{frame}{The size of our dataset}
+  \begin{itemize}
+  \item {
+    124MB
+  }
+  \end{itemize}
+\end{frame}
+
+\subsection{How we collect/build our dataset}
+
+\begin{frame}{How we collect/build our dataset}
+  \begin{itemize}
+  \item {
+    寫爬蟲程式去抓驗證碼
+  }
+  \end{itemize}
+\end{frame}
+
+\subsection{Samples in our dataset}
+
+\begin{frame}{Samples in our dataset}
+	\begin{table}
+		\scalebox{1.2}{
+			\begin{tabular}{| l | l |}
+			\toprule
+			\textbf{Samples} & 
+			\textbf{Quantities} \\ 
+			\midrule 
+			Training samples & 35154\\ \hline
+			Validating samples&11718\\ \hline
+			Testing samples&15624\\
+			\bottomrule 
+			\end{tabular} 
+		}
+	\caption{Sample} 
+	\end{table}
+\end{frame}
+
+
+\section{Experimental Evaluation}
+
+\subsection{Experimental environment}
+
+\begin{frame}{Experimental environment}
+  \begin{itemize}
+  \item {
+    Windows 10\\
+}
+ \item {
+    Python 3.7\\
+}
+ \item {
+    opencv-contrib-python 4.1.0.25\\
+}
+ \item {
+    Keras 2.2.4\\
+}
+ \item {
+    selenium 3.141.0\\
+}
+ \item {
+    selenium-wire1.0.5\\
+}
+ \item {
+    numpy1.16.3\\
+}
+ \item {
+    chromedriver.exe
+}
+  \end{itemize}
+\end{frame}
+
+\subsection{How many epochs we set for training}
+
+\begin{frame}{How many epochs we set for training}
+  \begin{itemize}
+  \item {
+    100 epochs
+  }
+  \end{itemize}
+\end{frame}
+
+\subsection{Qualitative evaluation}
+
+\begin{frame}{Qualitative evaluation}
+
+    \begin{figure} \includegraphics [width=0.5\linewidth]{quality.jpg} \end{figure}
+\end{frame}
+
+\subsection{Quantitative evaluation}
+
+\begin{frame}{Quantitative evaluation}
+  \begin{itemize}
+  \item {
+\begin{table}
+		\scalebox{0.74}{
+			\begin{tabular}{| l | l | l | l |}
+			\toprule
+			\textbf{val\_digit1\_acc} & 
+			\textbf{val\_digit2\_acc} & 
+			\textbf{val\_digit3\_acc}& 
+			\textbf{val\_digit4\_acc}\\ 
+			\midrule 
+			100\% & 99.9\%& 99.9\% &99.9\% \\
+			
+			\bottomrule 
+			\end{tabular} 
+		}
+	\end{table}
+
+
+  }
+
+ \item {
+\begin{table}
+		\scalebox{0.7}{
+			\begin{tabular}{| l | l | l | l |}
+			\toprule
+			\textbf{test\_digit1\_acc} & 
+			\textbf{test\_digit1\_acc} & 
+			\textbf{test\_digit1\_acc}& 
+			\textbf{test\_digit1\_acc}\\ 
+			\midrule 
+			100.0\%&99.9\%& 99.9\% &99.9\% \\
+			
+			\bottomrule 
+			\end{tabular} 
+		}
+	\end{table}
+
+
+  } 
+\item {
+\begin{table}
+		\scalebox{1.0}{
+			\begin{tabular}{| l | l | l | l |}
+			\toprule
+			\textbf{total\_acc} & 
+			\textbf{total\_acc} & 
+			\textbf{total\_acc}& 
+			\textbf{total\_acc}\\ 
+			\midrule 
+			99.4\% & 99.0\%&  99.3\% &99.4\% \\
+			
+			\bottomrule 
+			\end{tabular} 
+		}
+	\end{table}
+
+
+  }
+  \end{itemize}
+\end{frame}
+
+\subsection{Live demo}
+
+\begin{frame}{Live demo}
+  \begin{itemize}
+  \item {
+    影片demo
+  }
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Version control}
+  \begin{itemize}
+  \item {
+    Gitlab展示
+  }
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Cooperate}
+    \begin{figure} \includegraphics [width=0.7\linewidth]{contri.jpg} \end{figure}
+
+\end{frame}
+
+\begin{frame}{Job Scheduling}
+\begin{itemize}
+  \item {
+    25\%\%data 蒐集\\
+     1051522(15\%)、1053329(5\%)、1053327(5\%)
+  }
+  \end{itemize}
+\begin{itemize}
+  \item {
+    35\%神經網路架構\\
+     1051522(5\%)、1053329(15\%)、1053327(15\%)
+  }
+  \end{itemize}
+\begin{itemize}
+  \item {
+    10\%視覺操作\\
+     1051522(10\%)
+  }
+  \end{itemize}
+\begin{itemize}
+  \item {
+     15\%SRS\\
+151528(15\%)
+  }
+  \end{itemize}
+\begin{itemize}
+  \item {
+    15\%PPT\\
+     1051523(15\%)
+  }
+  \end{itemize}
+
+\end{frame}
+\begin{frame}{Job Scheduling}
+\begin{itemize}
+  \item {
+      1051522:30\%
+  }
+  \end{itemize}
+\begin{itemize}
+  \item {
+   1051523:15\%
+  }
+  \end{itemize}
+\begin{itemize}
+  \item {
+    1051528:15\%
+  }
+  \end{itemize}
+\begin{itemize}
+  \item {
+    1053327:20\%
+  }
+  \end{itemize}
+\begin{itemize}
+  \item {
+    1053329:20\%
+  }
+  \end{itemize}
+
+\end{frame}
+
+
+
+\end{document}
+
+

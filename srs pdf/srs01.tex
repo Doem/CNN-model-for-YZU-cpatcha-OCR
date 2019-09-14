@@ -1,0 +1,124 @@
+%Copyright 2014 Jean-Philippe Eisenbarth
+%This program is free software: you can 
+%redistribute it and/or modify it under the terms of the GNU General Public 
+%License as published by the Free Software Foundation, either version 3 of the 
+%License, or (at your option) any later version.
+%This program is distributed in the hope that it will be useful,but WITHOUT ANY 
+%WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A 
+%PARTICULAR PURPOSE. See the GNU General Public License for more details.
+%You should have received a copy of the GNU General Public License along with 
+%this program.  If not, see <http://www.gnu.org/licenses/>.
+
+%Based on the code of Yiannis Lazarides
+%http://tex.stackexchange.com/questions/42602/software-requirements-specification-with-latex
+%http://tex.stackexchange.com/users/963/yiannis-lazarides
+%Also based on the template of Karl E. Wiegers
+%http://www.se.rit.edu/~emad/teaching/slides/srs_template_sep14.pdf
+%http://karlwiegers.com
+\documentclass{scrreprt}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{listings}
+\usepackage{underscore}
+\usepackage[bookmarks=true]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{CJKutf8}
+
+\hypersetup{
+    bookmarks=false,    % show bookmarks bar?
+    pdftitle={Software Requirement Specification},    % title
+    pdfauthor={Jean-Philippe Eisenbarth},                     % author
+    pdfsubject={TeX and LaTeX},                        % subject of the document
+    pdfkeywords={TeX, LaTeX, graphics, images}, % list of keywords
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=blue,       % color of internal links
+    citecolor=black,       % color of links to bibliography
+    filecolor=black,        % color of file links
+    urlcolor=purple,        % color of external links
+    linktoc=page            % only page is linked
+}%
+\def\myversion{1.0 }
+\date{}
+%\title{%
+
+%}
+\usepackage{hyperref}
+\begin{document}
+\begin{CJK}{UTF8}{nkai}
+\begin{flushright}
+    \begin{bfseries}
+        \Huge{Final Project}\\
+
+        \vspace{8cm}
+       1051522 許致瑋\\
+       \vspace{0.2cm}
+       1051523 石曜愷\\
+\vspace{0.2cm}
+       1051528 官政凱\\
+\vspace{0.2cm}
+       1053327 陳遠安\\
+\vspace{0.2cm}
+       1053329 陳明彥\\
+
+        \vspace{1cm}
+        \today\\
+    \end{bfseries}
+\end{flushright}
+
+\tableofcontents
+
+\chapter{Introduction}
+
+\section{Purpose}
+
+\section{Intended Audience and Reading Suggestions}
+
+\section{Project Scope}
+
+\chapter{Overall Description}
+
+\section{Product Perspective}
+
+\section{Product Functions}
+
+\section{User Classes and Characteristics}
+
+\section{Operating Environment}
+
+\section{Design and Implementation Constraints}
+
+\section{Assumptions and Dependencies}
+
+
+\chapter{External Interface Requirements}
+
+\section{User Interfaces}
+
+\section{Hardware Interfaces}
+
+\section{Software Interfaces}
+
+\chapter{System Features}
+
+\section{Description and Priority}
+
+\section{Stimulus/Response Sequences}
+
+\section{Functional Requirements}
+
+\chapter{Other Nonfunctional Requirements}
+
+\section{Performance Requirements}
+
+\section{Safety Requirements (optional)}
+
+\section{Security Requirements (optional)}
+
+
+
+
+
+\end{CJK}
+\end{document}
