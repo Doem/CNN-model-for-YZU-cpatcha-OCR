@@ -17,3 +17,10 @@
 |model.h5| 訓練出來的模型 |
 |captcha_imgs.zip| 訓練用之資料集 |
 
+# Note
+使用前請先在資料夾中新增 "accounts.ini" 檔案存放Portal帳密，格式如下:
+```
+[Default]
+Account= your account
+Password= your password
+```
